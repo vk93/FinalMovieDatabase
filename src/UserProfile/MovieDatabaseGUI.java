@@ -185,7 +185,45 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
     public void SortMovieByRatingwithGenre(){
         String[] movieRatingArray2 = new String[movieDataSize];
         //int point2=0;
-        if(numGenreSug==3){
+        for(int p=0;p<movieDataSize;p++){
+            movieRatingArray2[p]=null;
+        }
+        switch(numGenreSug){
+            case 1:{
+            for(int u3=0;u3<movieDataSize-8;u3=u3+8){
+                if(       movieRatingArray[u3+3].substring(8,12).equals(Sug[0].substring(0,4))
+                        ||movieRatingArray[u3+4].substring(8,12).equals(Sug[0].substring(0,4))
+                        ||movieRatingArray[u3+5].substring(8,12).equals(Sug[0].substring(0,4))
+                        ){
+                    for(int x3=0;x3<8;x3++){
+                        movieRatingArray2[u3+x3]=movieRatingArray[u3+x3];
+                    }
+                    //point2=point2+1;
+                }
+            }
+            //SuggestMovieList.setListData(movieRatingArray2);
+        }
+        break;
+            case 2:{
+            for(int u2=0;u2<movieDataSize-8;u2=u2+8){
+                if(       movieRatingArray[u2+3].substring(8,12).equals(Sug[0].substring(0,4))
+                        ||movieRatingArray[u2+4].substring(8,12).equals(Sug[0].substring(0,4))
+                        ||movieRatingArray[u2+5].substring(8,12).equals(Sug[0].substring(0,4))
+                        ||movieRatingArray[u2+3].substring(8,12).equals(Sug[1].substring(0,4))
+                        ||movieRatingArray[u2+4].substring(8,12).equals(Sug[1].substring(0,4))
+                        ||movieRatingArray[u2+5].substring(8,12).equals(Sug[1].substring(0,4))  
+                        ){
+                    for(int x2=0;x2<8;x2++){
+                        movieRatingArray2[u2+x2]=movieRatingArray[u2+x2];
+                    }
+                    //point2=point2+1;
+                }
+            }
+            //SuggestMovieList.setListData(movieRatingArray2);
+        }
+        break;
+        
+            case 3:{
             for(int u=0;u<movieDataSize-8;u=u+8){
                 if(       movieRatingArray[u+3].substring(8,12).equals(Sug[0].substring(0,4))
                         ||movieRatingArray[u+4].substring(8,12).equals(Sug[0].substring(0,4))
@@ -203,39 +241,14 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
                     //point2=point2+1;
                 }
             }
-            SuggestMovieList.setListData(movieRatingArray2);
+            //SuggestMovieList.setListData(movieRatingArray2);
         }
-        else if(numGenreSug==2){
-            for(int u2=0;u2<movieDataSize-8;u2=u2+8){
-                if(       movieRatingArray[u2+3].substring(8,12).equals(Sug[0].substring(0,4))
-                        ||movieRatingArray[u2+4].substring(8,12).equals(Sug[0].substring(0,4))
-                        ||movieRatingArray[u2+5].substring(8,12).equals(Sug[0].substring(0,4))
-                        ||movieRatingArray[u2+3].substring(8,12).equals(Sug[1].substring(0,4))
-                        ||movieRatingArray[u2+4].substring(8,12).equals(Sug[1].substring(0,4))
-                        ||movieRatingArray[u2+5].substring(8,12).equals(Sug[1].substring(0,4))  
-                        ){
-                    for(int x2=0;x2<8;x2++){
-                        movieRatingArray2[u2+x2]=movieRatingArray[u2+x2];
-                    }
-                    //point2=point2+1;
-                }
-            }
-            SuggestMovieList.setListData(movieRatingArray2);
-    }
-        else if(numGenreSug==1){
-            for(int u3=0;u3<movieDataSize-8;u3=u3+8){
-                if(       movieRatingArray[u3+3].substring(8,12).equals(Sug[0].substring(0,4))
-                        ||movieRatingArray[u3+4].substring(8,12).equals(Sug[0].substring(0,4))
-                        ||movieRatingArray[u3+5].substring(8,12).equals(Sug[0].substring(0,4))
-                        ){
-                    for(int x3=0;x3<8;x3++){
-                        movieRatingArray2[u3+x3]=movieRatingArray[u3+x3];
-                    }
-                    //point2=point2+1;
-                }
-            }
-            SuggestMovieList.setListData(movieRatingArray2);
+        //else{
         }
+        SuggestMovieList.setListData(movieRatingArray2);
+        //for(int p2=0;p2<movieDataSize;p2++){
+            //movieRatingArray2[p2]=null;
+        //}
     }
     
     private profile hasUser(String username)
