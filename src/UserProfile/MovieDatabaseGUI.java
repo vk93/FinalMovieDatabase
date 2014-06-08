@@ -168,6 +168,7 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
             int next = Character.getNumericValue(movieRatingArray[i+2+8].charAt(6));
             if(cur<next){
                 CurReview=Arrays.copyOfRange(movieRatingArray, i, i+7);
+                    System.out.println(CurReview[6]);
                     for(int j=0;j<7;j++){
                         movieRatingArray[i+j]=movieRatingArray[i+j+8];
                         movieRatingArray[i+j+8]=CurReview[j];
