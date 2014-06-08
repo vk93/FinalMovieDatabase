@@ -21,6 +21,7 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
      */
     List<String> moviesList = new ArrayList<String>();
     List<String> movies = new ArrayList<String>();
+    List<String> moviesbyrating = new ArrayList<String>();
     profile defaultUser = new profile("test","test");
     profile currentUser = defaultUser;
     AutocompleteComboBox combo;
@@ -30,6 +31,7 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
     
     int movieDataSize = 0;
     String[] movieDataArray;
+    String[] movieRatingArray;
     
     public MovieDatabaseGUI() {
         
@@ -62,7 +64,8 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
         InvalidLoginLabel.setVisible(false);
         Genre2Spinner.setVisible(false);
         Genre3Spinner.setVisible(false);
-        
+        SuggestMoviePanel.setVisible(false);
+      
     }
     public void readFileMovies()
     {
@@ -150,13 +153,32 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
         }
         
         addMovies(movieDataArray);
-
     }
         
     protected void addMovies(String[] movies) {
         MovieDatabaseList.setListData(movies);
     }
-        
+    
+    public void SortMovieByRating(){     // sort movies by rating
+        movieRatingArray=movieDataArray;
+        String[] CurReview = new String[10];
+        for(int k=0;k<movieDataSize;k=k+8){
+        for(int i=0;i<movieDataSize-12;i=i+8){
+            int cur = Character.getNumericValue(movieRatingArray[i+2].charAt(6));
+            int next = Character.getNumericValue(movieRatingArray[i+2+8].charAt(6));
+            if(cur<next){
+                CurReview=Arrays.copyOfRange(movieRatingArray, i, i+7);
+                System.out.println(CurReview[6]);
+                    for(int j=0;j<7;j++){
+                        movieRatingArray[i+j]=movieRatingArray[i+j+8];
+                        movieRatingArray[i+j+8]=CurReview[j];
+                    }
+            }
+        }
+        }
+        SuggestMovieList.setListData(movieRatingArray);
+    }
+
     private profile hasUser(String username)
     {
         for(profile p: users)
@@ -242,6 +264,12 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
         HomeReviewButton = new javax.swing.JButton();
         FindFriendsButton = new javax.swing.JButton();
         HomeToMoviesButtom = new javax.swing.JButton();
+        SuggestMoviePanel = new javax.swing.JPanel();
+        SuggestLogoutButton = new javax.swing.JButton();
+        icon3 = new javax.swing.JLabel();
+        SuggestMovieToHomeButton = new javax.swing.JButton();
+        SuggestMovieScrollable = new javax.swing.JScrollPane();
+        SuggestMovieList = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MovieDatabase");
@@ -793,6 +821,71 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
 
         getContentPane().add(HomePagePanel, "card6");
 
+        SuggestMoviePanel.setBackground(new java.awt.Color(255, 102, 0));
+
+        SuggestLogoutButton.setText("Logout");
+        SuggestLogoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SuggestLogoutButtonActionPerformed(evt);
+            }
+        });
+
+        icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserProfile/rsz_couch-potato-illustration-1142363.jpg"))); // NOI18N
+
+        SuggestMovieToHomeButton.setText("GET ME OUT OF HERE!");
+        SuggestMovieToHomeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SuggestMovieToHomeButtonActionPerformed(evt);
+            }
+        });
+
+        SuggestMovieScrollable.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        SuggestMovieScrollable.setPreferredSize(new java.awt.Dimension(50, 50));
+        SuggestMovieScrollable.setSize(new java.awt.Dimension(50, 50));
+
+        SuggestMovieList.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
+        SuggestMovieScrollable.setViewportView(SuggestMovieList);
+
+        javax.swing.GroupLayout SuggestMoviePanelLayout = new javax.swing.GroupLayout(SuggestMoviePanel);
+        SuggestMoviePanel.setLayout(SuggestMoviePanelLayout);
+        SuggestMoviePanelLayout.setHorizontalGroup(
+            SuggestMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SuggestMoviePanelLayout.createSequentialGroup()
+                .addGroup(SuggestMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                        .addContainerGap(20, Short.MAX_VALUE)
+                        .addComponent(SuggestMovieScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(icon3))
+                    .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(SuggestMovieToHomeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SuggestLogoutButton)))
+                .addContainerGap())
+        );
+        SuggestMoviePanelLayout.setVerticalGroup(
+            SuggestMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                .addGroup(SuggestMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(SuggestLogoutButton))
+                    .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(SuggestMovieToHomeButton)))
+                .addGroup(SuggestMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(icon3))
+                    .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(SuggestMovieScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(SuggestMoviePanel, "card7");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -955,6 +1048,11 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
 
     private void SuggestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuggestionButtonActionPerformed
         // TODO add your handling code here:
+        // This is the Find me a Movie Function
+        //readFile();
+        SortMovieByRating();
+        HomePagePanel.setVisible(false);
+        SuggestMoviePanel.setVisible(true);
     }//GEN-LAST:event_SuggestionButtonActionPerformed
 
     private void HomeReviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeReviewButtonActionPerformed
@@ -970,6 +1068,7 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
 
     private void FindFriendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindFriendsButtonActionPerformed
         // TODO add your handling code here:
+        // This is the Friends please button
     }//GEN-LAST:event_FindFriendsButtonActionPerformed
 
     private void HomeToMoviesButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeToMoviesButtomActionPerformed
@@ -999,6 +1098,21 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
         MovieDatabasePanel.setVisible(false);
         HomePagePanel.setVisible(true);
     }//GEN-LAST:event_DatabaseToHomeButtonActionPerformed
+
+    private void SuggestLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuggestLogoutButtonActionPerformed
+        // TODO add your handling code here:
+        currentUser = null;
+        SuggestMoviePanel.setVisible(false);
+        LoginPanel.setVisible(true);
+        LoginUsernameTextField.setText("");
+        LoginPasswordTextField.setText("");
+    }//GEN-LAST:event_SuggestLogoutButtonActionPerformed
+
+    private void SuggestMovieToHomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuggestMovieToHomeButtonActionPerformed
+        // TODO add your handling code here:
+        MovieDatabasePanel.setVisible(false);
+        HomePagePanel.setVisible(true);
+    }//GEN-LAST:event_SuggestMovieToHomeButtonActionPerformed
 
     private void initComponents2() 
     {
@@ -1070,6 +1184,12 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
         HomeReviewButton = new javax.swing.JButton();
         FindFriendsButton = new javax.swing.JButton();
         HomeToMoviesButtom = new javax.swing.JButton();
+        SuggestMoviePanel = new javax.swing.JPanel();
+        SuggestLogoutButton = new javax.swing.JButton();
+        icon3 = new javax.swing.JLabel();
+        SuggestMovieToHomeButton = new javax.swing.JButton();
+        SuggestMovieScrollable = new javax.swing.JScrollPane();
+        SuggestMovieList = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MovieDatabase");
@@ -1457,7 +1577,6 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
         getContentPane().add(NewUserPanel, "card4");
 
         MovieDatabasePanel.setBackground(new java.awt.Color(255, 102, 0));
-
         DatabaseLogoutButton.setText("Logout");
         DatabaseLogoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1621,6 +1740,71 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
 
         getContentPane().add(HomePagePanel, "card6");
 
+        SuggestMoviePanel.setBackground(new java.awt.Color(255, 102, 0));
+
+        SuggestLogoutButton.setText("Logout");
+        SuggestLogoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SuggestLogoutButtonActionPerformed(evt);
+            }
+        });
+
+        icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserProfile/rsz_couch-potato-illustration-1142363.jpg"))); // NOI18N
+
+        SuggestMovieToHomeButton.setText("GET ME OUT OF HERE!");
+        SuggestMovieToHomeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SuggestMovieToHomeButtonActionPerformed(evt);
+            }
+        });
+
+        SuggestMovieScrollable.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        SuggestMovieScrollable.setPreferredSize(new java.awt.Dimension(50, 50));
+        SuggestMovieScrollable.setSize(new java.awt.Dimension(50, 50));
+
+        SuggestMovieList.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
+        SuggestMovieScrollable.setViewportView(SuggestMovieList);
+
+        javax.swing.GroupLayout SuggestMoviePanelLayout = new javax.swing.GroupLayout(SuggestMoviePanel);
+        SuggestMoviePanel.setLayout(SuggestMoviePanelLayout);
+        SuggestMoviePanelLayout.setHorizontalGroup(
+            SuggestMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SuggestMoviePanelLayout.createSequentialGroup()
+                .addGroup(SuggestMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                        .addContainerGap(20, Short.MAX_VALUE)
+                        .addComponent(SuggestMovieScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(icon3))
+                    .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(SuggestMovieToHomeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SuggestLogoutButton)))
+                .addContainerGap())
+        );
+        SuggestMoviePanelLayout.setVerticalGroup(
+            SuggestMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                .addGroup(SuggestMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(SuggestLogoutButton))
+                    .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(SuggestMovieToHomeButton)))
+                .addGroup(SuggestMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(icon3))
+                    .addGroup(SuggestMoviePanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(SuggestMovieScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(SuggestMoviePanel, "card7");
+
         pack();
     }
     /**
@@ -1658,7 +1842,6 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
         });
         
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AboutLabel;
     private javax.swing.JLabel AboutLabel2;
@@ -1712,9 +1895,15 @@ public class MovieDatabaseGUI extends javax.swing.JFrame {
     private javax.swing.JPanel ReviewPanel;
     private javax.swing.JButton ReviewToHomeButton;
     private javax.swing.JButton SubmitButton1;
+    private javax.swing.JButton SuggestLogoutButton;
+    private static javax.swing.JList SuggestMovieList;
+    private javax.swing.JPanel SuggestMoviePanel;
+    private javax.swing.JScrollPane SuggestMovieScrollable;
+    private javax.swing.JButton SuggestMovieToHomeButton;
     private javax.swing.JButton SuggestionButton;
     private javax.swing.JLabel WelcomeLabel;
     private javax.swing.JLabel icon;
     private javax.swing.JLabel icon2;
+    private javax.swing.JLabel icon3;
     // End of variables declaration//GEN-END:variables
 }
