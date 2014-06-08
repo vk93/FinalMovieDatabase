@@ -464,6 +464,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Choose genres:"/>
           </Properties>
+          <BindingProperties>
+            <BindingProperty name="horizontalAlignment" source="ChooseGenresLabel" sourcePath="${alignmentX}" target="ChooseGenresLabel" targetPath="horizontalAlignment" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="ReccomendLabel">
           <Properties>
@@ -1074,6 +1077,145 @@
             </Component>
           </SubComponents>
         </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="FindMovieByChoicePanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="66" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="card8"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace pref="51" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="ChooseSuggestionsToHome" min="-2" pref="238" max="-2" attributes="0"/>
+                      <Component id="ShowMeMoviesSuggestion" alignment="1" min="-2" pref="238" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="ChooseGenresLabelSuggest" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="Genre1SpinnerS1" min="-2" pref="110" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="NumGenresLabelSuggest" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="NumGenresSpinnerSuggest" min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="Genre2SpinnerS2" min="-2" pref="110" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="Genre3SpinnerS3" min="-2" pref="110" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="NumGenresLabelSuggest" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="NumGenresSpinnerSuggest" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Genre1SpinnerS1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Genre2SpinnerS2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Genre3SpinnerS3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ChooseGenresLabelSuggest" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="ShowMeMoviesSuggestion" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="ChooseSuggestionsToHome" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="363" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JSpinner" name="Genre1SpinnerS1">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner(genremodelS)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="String[] genrelistS = {&quot;Action&quot;,&quot;Adventure&quot;,&quot;Animation&quot;,&quot;Comedy&quot;,&quot;Crime&quot;,&quot;Documentary&quot;,&quot;Drama&quot;, &quot;Family&quot;,&quot;Fantasy&quot;,&quot;Film-Noir&quot;,&quot;History&quot;,&quot;Horror&quot;,&quot;Music&quot;,&quot;Musical&quot;,&quot;Mystery&quot;,&quot;Romance&quot;,&quot;Sci-Fi&quot;,&quot;Sport&quot;,&quot;Thriller&quot;,&quot;War&quot;,&quot;Western&quot;};&#xa;SpinnerListModel genremodelS = new SpinnerListModel(genrelistS);"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="Genre2SpinnerS2">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Genre2SpinnerS2.setVisible(false);"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner(genremodelS2)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="//String[] genrelist = {&quot;Action&quot;,&quot;Adventure&quot;,&quot;Animation&quot;,&quot;Comedy&quot;,&quot;Crime&quot;,&quot;Documentary&quot;,&quot;Drama&quot;, &quot;Family&quot;,&quot;Fantasy&quot;,&quot;Film-Noir&quot;,&quot;History&quot;,&quot;Horror&quot;,&quot;Music&quot;,&quot;Musical&quot;,&quot;Mystery&quot;,&quot;Romance&quot;,&quot;Sci-Fi&quot;,&quot;Sport&quot;,&quot;Thriller&quot;,&quot;War&quot;,&quot;Western&quot;};&#xa;SpinnerListModel genremodelS2 = new SpinnerListModel(genrelistS);"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="Genre3SpinnerS3">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Genre3SpinnerS3.setVisible(false);"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner(genremodelS3)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="//String[] genrelist = {&quot;Action&quot;,&quot;Adventure&quot;,&quot;Animation&quot;,&quot;Comedy&quot;,&quot;Crime&quot;,&quot;Documentary&quot;,&quot;Drama&quot;, &quot;Family&quot;,&quot;Fantasy&quot;,&quot;Film-Noir&quot;,&quot;History&quot;,&quot;Horror&quot;,&quot;Music&quot;,&quot;Musical&quot;,&quot;Mystery&quot;,&quot;Romance&quot;,&quot;Sci-Fi&quot;,&quot;Sport&quot;,&quot;Thriller&quot;,&quot;War&quot;,&quot;Western&quot;};&#xa;SpinnerListModel genremodelS3 = new SpinnerListModel(genrelistS);"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="ChooseGenresLabelSuggest">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="PilGi" size="24" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Choose genres:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="NumGenresSpinnerSuggest">
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="NumGenresSpinnerSuggestStateChanged"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner(modelSuggest)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="SpinnerModel modelSuggest =&#xa;        new SpinnerNumberModel(1, //initial value&#xa;                               1, //min&#xa;                               3, //max&#xa;                               1);"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="NumGenresLabelSuggest">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="PilGi" size="24" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Number of Movie Genres?"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="ShowMeMoviesSuggestion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Find me Movies From These!"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ShowMeMoviesSuggestionActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="ChooseSuggestionsToHome">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="I want to do something else!"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChooseSuggestionsToHomeActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
